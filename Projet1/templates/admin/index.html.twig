@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin index{% endblock %}
+
+{% block body %}
+    <h1>Admin index</h1>
+
+<div class="container-fluid">
+    <div class="row">
+    {# {% include "_partials/_adminnav.html.twig" %} #}
+    
+    </div>
+</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>SurName</th>
+                <th>Status</th>
+                <th>PhoneNumber</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for admin in admins %}
+            <tr>
+                <td>{{ admin.id }}</td>
+                <td>{{ admin.firstName }}</td>
+                <td>{{ admin.surName }}</td>
+                <td>{{ admin.status }}</td>
+                <td>{{ admin.phoneNumber }}</td>
+                <td>{{ admin.email }}</td>
+                <td>
+                    <a href="{{ path('app_admin_show', {'id': admin.id}) }}">show</a>
+                    <a href="{{ path('app_admin_edit', {'id': admin.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_new') }}">Create new</a>
+{% endblock %}
